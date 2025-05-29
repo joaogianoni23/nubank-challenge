@@ -21,9 +21,13 @@ export default function Home() {
   const scrollY = useRef(new Animated.Value(0)).current;
   const router = useRouter();
   
-  // Função para navegar para a página do Pix
+  // Funções de navegação
   const navigateToPix = () => {
     router.push('/pix');
+  };
+  
+  const navigateToInvestimentos = () => {
+    router.push('/investimentos');
   };
   
   // Animação do cabeçalho
@@ -136,7 +140,7 @@ export default function Home() {
             decelerationRate="fast"
             snapToInterval={80}
           >
-            {/* Lista de atalhos com o Pix configurado para navegação */}
+            {/* Pix shortcut with navigation */}
             <TouchableOpacity style={styles.shortcutItem} onPress={navigateToPix}>
               <View style={styles.shortcutIcon}>
                 <MaterialCommunityIcons name="pix" size={22} color="#8A05BE" />
@@ -144,23 +148,56 @@ export default function Home() {
               <Text style={styles.shortcutTitle}>Pix</Text>
             </TouchableOpacity>
             
-            {/* Demais atalhos sem navegação por enquanto */}
-            {[
-              { icon: 'barcode', title: 'Pagar' },
-              { icon: 'cash-plus', title: 'Depositar' },
-              { icon: 'bank-transfer', title: 'Transferir' },
-              { icon: 'cellphone', title: 'Recarga' },
-              { icon: 'heart', title: 'Doação' },
-              { icon: 'chart-box-outline', title: 'Investir' },
-              { icon: 'shopping-outline', title: 'Shopping' },
-            ].map((item, index) => (
-              <TouchableOpacity key={index} style={styles.shortcutItem}>
-                <View style={styles.shortcutIcon}>
-                  <MaterialCommunityIcons name={item.icon} size={22} color="#8A05BE" />
-                </View>
-                <Text style={styles.shortcutTitle}>{item.title}</Text>
-              </TouchableOpacity>
-            ))}
+            {/* Other shortcuts */}
+            <TouchableOpacity style={styles.shortcutItem}>
+              <View style={styles.shortcutIcon}>
+                <MaterialCommunityIcons name="barcode" size={22} color="#8A05BE" />
+              </View>
+              <Text style={styles.shortcutTitle}>Pagar</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.shortcutItem}>
+              <View style={styles.shortcutIcon}>
+                <MaterialCommunityIcons name="cash-plus" size={22} color="#8A05BE" />
+              </View>
+              <Text style={styles.shortcutTitle}>Depositar</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.shortcutItem}>
+              <View style={styles.shortcutIcon}>
+                <MaterialCommunityIcons name="bank-transfer" size={22} color="#8A05BE" />
+              </View>
+              <Text style={styles.shortcutTitle}>Transferir</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.shortcutItem}>
+              <View style={styles.shortcutIcon}>
+                <MaterialCommunityIcons name="cellphone" size={22} color="#8A05BE" />
+              </View>
+              <Text style={styles.shortcutTitle}>Recarga</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.shortcutItem}>
+              <View style={styles.shortcutIcon}>
+                <MaterialCommunityIcons name="heart" size={22} color="#8A05BE" />
+              </View>
+              <Text style={styles.shortcutTitle}>Doação</Text>
+            </TouchableOpacity>
+            
+            {/* Investir shortcut with navigation */}
+            <TouchableOpacity style={styles.shortcutItem} onPress={navigateToInvestimentos}>
+              <View style={styles.shortcutIcon}>
+                <MaterialCommunityIcons name="chart-box-outline" size={22} color="#8A05BE" />
+              </View>
+              <Text style={styles.shortcutTitle}>Investir</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.shortcutItem}>
+              <View style={styles.shortcutIcon}>
+                <MaterialCommunityIcons name="shopping-outline" size={22} color="#8A05BE" />
+              </View>
+              <Text style={styles.shortcutTitle}>Shopping</Text>
+            </TouchableOpacity>
           </ScrollView>
         </Animated.View>
 
@@ -188,8 +225,8 @@ export default function Home() {
           <Feather name="chevron-right" size={20} color="#8A05BE" />
         </TouchableOpacity>
 
-        {/* Investments */}
-        <TouchableOpacity style={styles.actionCard}>
+        {/* Investments with navigation */}
+        <TouchableOpacity style={styles.actionCard} onPress={navigateToInvestimentos}>
           <MaterialCommunityIcons name="chart-line" size={24} color="#8A05BE" />
           <View style={styles.actionCardContent}>
             <Text style={styles.actionCardTitle}>Investimentos</Text>
