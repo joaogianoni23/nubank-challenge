@@ -34,6 +34,10 @@ export default function Home() {
     router.push('/shopping');
   };
   
+  const navigateToPerfil = () => {
+    router.push('/perfil');
+  };
+  
   // Animação do cabeçalho
   const headerHeight = scrollY.interpolate({
     inputRange: [0, 120],
@@ -60,7 +64,7 @@ export default function Home() {
       {/* Header Animado */}
       <Animated.View style={[styles.header, { height: headerHeight }]}>
         <View style={styles.headerTop}>
-          <TouchableOpacity style={styles.userButton}>
+          <TouchableOpacity style={styles.userButton} onPress={navigateToPerfil}>
             <Feather name="user" size={28} color="#FFF" />
           </TouchableOpacity>
 
@@ -181,28 +185,6 @@ export default function Home() {
               <Text style={styles.shortcutTitle}>Recarga</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.shortcutItem}>
-              <View style={styles.shortcutIcon}>
-                <MaterialCommunityIcons name="heart" size={22} color="#8A05BE" />
-              </View>
-              <Text style={styles.shortcutTitle}>Doação</Text>
-            </TouchableOpacity>
-            
-            {/* Investir shortcut with navigation */}
-            <TouchableOpacity style={styles.shortcutItem} onPress={navigateToInvestimentos}>
-              <View style={styles.shortcutIcon}>
-                <MaterialCommunityIcons name="chart-box-outline" size={22} color="#8A05BE" />
-              </View>
-              <Text style={styles.shortcutTitle}>Investir</Text>
-            </TouchableOpacity>
-            
-            {/* Shopping shortcut with navigation */}
-            <TouchableOpacity style={styles.shortcutItem} onPress={navigateToShopping}>
-              <View style={styles.shortcutIcon}>
-                <MaterialCommunityIcons name="shopping-outline" size={22} color="#8A05BE" />
-              </View>
-              <Text style={styles.shortcutTitle}>Shopping</Text>
-            </TouchableOpacity>
           </ScrollView>
         </Animated.View>
 

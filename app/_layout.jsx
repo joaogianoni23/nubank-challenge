@@ -4,8 +4,6 @@ import { BackHandler } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function Layout() {
-  // Impedir o comportamento de voltar ao pressionar o botão de voltar físico
-  // Isso ajuda a garantir que o app sempre inicie na página principal
   useEffect(() => {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
       return true;
@@ -43,6 +41,12 @@ export default function Layout() {
         />
         <Stack.Screen 
           name="shopping" 
+          options={{ 
+            headerShown: false 
+          }} 
+        />
+        <Stack.Screen 
+          name="perfil" 
           options={{ 
             headerShown: false 
           }} 
