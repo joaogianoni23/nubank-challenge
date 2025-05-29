@@ -30,6 +30,10 @@ export default function Home() {
     router.push('/investimentos');
   };
   
+  const navigateToShopping = () => {
+    router.push('/shopping');
+  };
+  
   // Animação do cabeçalho
   const headerHeight = scrollY.interpolate({
     inputRange: [0, 120],
@@ -192,7 +196,8 @@ export default function Home() {
               <Text style={styles.shortcutTitle}>Investir</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.shortcutItem}>
+            {/* Shopping shortcut with navigation */}
+            <TouchableOpacity style={styles.shortcutItem} onPress={navigateToShopping}>
               <View style={styles.shortcutIcon}>
                 <MaterialCommunityIcons name="shopping-outline" size={22} color="#8A05BE" />
               </View>
@@ -236,8 +241,8 @@ export default function Home() {
           <Feather name="chevron-right" size={20} color="#8A05BE" />
         </TouchableOpacity>
 
-        {/* NuShop */}
-        <TouchableOpacity style={styles.actionCard}>
+        {/* NuShop with navigation */}
+        <TouchableOpacity style={styles.actionCard} onPress={navigateToShopping}>
           <MaterialCommunityIcons name="shopping" size={24} color="#8A05BE" />
           <View style={styles.actionCardContent}>
             <Text style={styles.actionCardTitle}>Shopping</Text>
