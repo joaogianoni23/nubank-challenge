@@ -12,13 +12,19 @@ import {
   Dimensions
 } from 'react-native';
 import { Feather, MaterialIcons, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-import { BlurView } from 'expo-blur';
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 
 export default function Home() {
   const [showBalance, setShowBalance] = useState(true);
   const scrollY = useRef(new Animated.Value(0)).current;
+  const router = useRouter();
+  
+  // Função para navegar para a página do Pix
+  const navigateToPix = () => {
+    router.push('/pix');
+  };
   
   // Animação do cabeçalho
   const headerHeight = scrollY.interpolate({
@@ -121,7 +127,7 @@ export default function Home() {
           </View>
         </View>
 
-        {/* Shortcuts - com efeito de blur */}
+        {/* Shortcuts */}
         <Animated.View style={[styles.shortcutsContainer, { opacity: shortsOpacity }]}>
           <ScrollView 
             horizontal 
@@ -130,8 +136,16 @@ export default function Home() {
             decelerationRate="fast"
             snapToInterval={80}
           >
+            {/* Lista de atalhos com o Pix configurado para navegação */}
+            <TouchableOpacity style={styles.shortcutItem} onPress={navigateToPix}>
+              <View style={styles.shortcutIcon}>
+                <MaterialCommunityIcons name="pix" size={22} color="#8A05BE" />
+              </View>
+              <Text style={styles.shortcutTitle}>Pix</Text>
+            </TouchableOpacity>
+            
+            {/* Demais atalhos sem navegação por enquanto */}
             {[
-              { icon: 'pix', title: 'Pix' },
               { icon: 'barcode', title: 'Pagar' },
               { icon: 'cash-plus', title: 'Depositar' },
               { icon: 'bank-transfer', title: 'Transferir' },
